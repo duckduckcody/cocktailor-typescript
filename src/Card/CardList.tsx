@@ -3,10 +3,12 @@ import { Card } from "./Card";
 import coke from "./coke.png";
 import { BigBoyCard } from "./BigBoyCard";
 import { CSSTransition } from "react-transition-group";
+import styled from "styled-components";
 
 export interface Ingredient {
   name: string;
   description: string;
+  label: string;
   image: string;
 }
 
@@ -15,14 +17,28 @@ const ingredients = [
     name: "Coca Cola",
     description:
       "The most well known soda and arguably mixer packs acidity and caffeine",
+    label: "Mixer",
     image: coke,
   },
   {
     name: "Coke v2",
     description: "something very cool",
+    label: "Mixer",
     image: coke,
   },
 ];
+
+const Container = styled.div`
+  padding: 8px;
+`;
+
+const StyledCard = styled(Card)`
+  padding: 0 0 16px;
+
+  &::last-child {
+    margin: 0;
+  }
+`;
 
 export const CardList = () => {
   // maintain state for exit animation
@@ -37,9 +53,9 @@ export const CardList = () => {
   const handleCloseClick = () => setShowBigBoyCard(false);
 
   return (
-    <>
+    <Container>
       {ingredients.map((ingredient) => (
-        <Card
+        <StyledCard
           key={ingredient.name}
           ingredient={ingredient}
           onContainerClick={handleContainerClick}
@@ -56,6 +72,6 @@ export const CardList = () => {
           onCloseClick={handleCloseClick}
         />
       </CSSTransition>
-    </>
+    </Container>
   );
 };
