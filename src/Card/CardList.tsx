@@ -25,7 +25,7 @@ const ingredients = [
 ];
 
 export const CardList = () => {
-  //maintain state for exit animation
+  // maintain state for exit animation
   const [selectedIngredient, setSelectedIngredient] = useState<Ingredient>();
   const [showBigBoyCard, setShowBigBoyCard] = useState(false);
 
