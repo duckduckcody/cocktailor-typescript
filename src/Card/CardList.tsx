@@ -3,7 +3,12 @@ import { Card } from "./Card";
 import coke from "./coke.png";
 import { BigBoyCard } from "./BigBoyCard";
 
-const cards = [
+export interface Ingredient {
+  name: string;
+  image: string;
+}
+
+const ingredients = [
   {
     id: 1,
     name: "Coke",
@@ -17,22 +22,28 @@ const cards = [
 ];
 
 export const CardList = () => {
-  const [selectedCardId, setSelectedCardId] = useState<number | undefined>(
-    undefined
-  );
-  const handleContainerClick = (id: number) => setSelectedCardId(id);
+  const [selectedIngredient, setSelectedIngredient] = useState<Ingredient>();
+
+  const handleContainerClick = (ingredient: Ingredient) =>
+    setSelectedIngredient(ingredient);
+
+  const handleCloseClick = () => setSelectedIngredient(undefined);
+
   return (
     <>
-      {cards.map((card) => (
+      {ingredients.map((ingredient) => (
         <Card
-          id={card.id}
-          name={card.name}
-          image={card.image}
-          key={card.id}
+          key={ingredient.name}
+          ingredient={ingredient}
           onContainerClick={handleContainerClick}
         />
       ))}
-      {selectedCardId && <BigBoyCard />}
+      {selectedIngredient && (
+        <BigBoyCard
+          ingredient={selectedIngredient}
+          onCloseClick={handleCloseClick}
+        />
+      )}
     </>
   );
 };

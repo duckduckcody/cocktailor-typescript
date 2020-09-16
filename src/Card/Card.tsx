@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Ingredient } from "./CardList";
 
 const Container = styled.div`
   display: flex;
@@ -32,17 +33,15 @@ const TextContainer = styled.div`
 `;
 
 interface Props {
-  id: number;
-  name: string;
-  image: string;
-  onContainerClick?: (id: number) => void;
+  ingredient: Ingredient;
+  onContainerClick?: (ingredient: Ingredient) => void;
 }
 
-export const Card = ({ id, name, image, onContainerClick }: Props) => (
-  <Container onClick={() => onContainerClick?.(id)}>
+export const Card = ({ ingredient, onContainerClick }: Props) => (
+  <Container onClick={() => onContainerClick?.(ingredient)}>
     <ImageContainer>
-      <Image src={image} />
+      <Image src={ingredient.image} />
     </ImageContainer>
-    <TextContainer>{name}</TextContainer>
+    <TextContainer>{ingredient.name}</TextContainer>
   </Container>
 );
