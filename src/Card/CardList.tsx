@@ -2,32 +2,39 @@ import React, { useState } from "react";
 import { Card } from "./Card";
 import coke from "./coke.png";
 import { BigBoyCard } from "./BigBoyCard";
+import { CSSTransition } from "react-transition-group";
 
 export interface Ingredient {
   name: string;
+  description: string;
   image: string;
 }
 
 const ingredients = [
   {
-    id: 1,
-    name: "Coke",
+    name: "Coca Cola",
+    description:
+      "The most well known soda and arguably mixer packs acidity and caffeine",
     image: coke,
   },
   {
-    id: 2,
     name: "Coke v2",
+    description: "something very cool",
     image: coke,
   },
 ];
 
 export const CardList = () => {
+  //maintain state for exit animation
   const [selectedIngredient, setSelectedIngredient] = useState<Ingredient>();
+  const [showBigBoyCard, setShowBigBoyCard] = useState(false);
 
-  const handleContainerClick = (ingredient: Ingredient) =>
+  const handleContainerClick = (ingredient: Ingredient) => {
     setSelectedIngredient(ingredient);
+    setShowBigBoyCard(true);
+  };
 
-  const handleCloseClick = () => setSelectedIngredient(undefined);
+  const handleCloseClick = () => setShowBigBoyCard(false);
 
   return (
     <>
@@ -38,12 +45,17 @@ export const CardList = () => {
           onContainerClick={handleContainerClick}
         />
       ))}
-      {selectedIngredient && (
+      <CSSTransition
+        in={showBigBoyCard}
+        timeout={500}
+        unmountOnExit
+        classNames="bigBoyCard"
+      >
         <BigBoyCard
           ingredient={selectedIngredient}
           onCloseClick={handleCloseClick}
         />
-      )}
+      </CSSTransition>
     </>
   );
 };

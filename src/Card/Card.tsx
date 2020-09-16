@@ -16,6 +16,7 @@ const ImageContainer = styled.div`
   justify-content: center;
   overflow: hidden;
   border-radius: 8px;
+  cursor: pointer;
 `;
 
 const Image = styled.img`
@@ -32,6 +33,13 @@ const TextContainer = styled.div`
   position: relative;
 `;
 
+const Title = styled.span`
+  font-size: 18px;
+  line-height: 18px;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 interface Props {
   ingredient: Ingredient;
   onContainerClick?: (ingredient: Ingredient) => void;
@@ -42,6 +50,8 @@ export const Card = ({ ingredient, onContainerClick }: Props) => (
     <ImageContainer>
       <Image src={ingredient.image} />
     </ImageContainer>
-    <TextContainer>{ingredient.name}</TextContainer>
+    <TextContainer>
+      <Title>{ingredient.name}</Title>
+    </TextContainer>
   </Container>
 );
