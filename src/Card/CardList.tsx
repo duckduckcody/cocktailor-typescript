@@ -4,6 +4,7 @@ import coke from "./coke.png";
 import { BigBoyCard } from "./BigBoyCard";
 import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
+import { ConfirmModal } from "../common/Modal/ConfirmModal";
 
 export interface Ingredient {
   name: string;
@@ -44,6 +45,7 @@ export const CardList = () => {
   // maintain state for exit animation
   const [selectedIngredient, setSelectedIngredient] = useState<Ingredient>();
   const [showBigBoyCard, setShowBigBoyCard] = useState(false);
+  const [ingredientToDelete, setIngredientToDelete] = useState<Ingredient>();
 
   const handleContainerClick = (ingredient: Ingredient) => {
     setSelectedIngredient(ingredient);
@@ -59,6 +61,7 @@ export const CardList = () => {
           key={ingredient.name}
           ingredient={ingredient}
           onContainerClick={handleContainerClick}
+          onCloseClick={() => setIngredientToDelete(ingredient)}
         />
       ))}
       <CSSTransition
@@ -72,6 +75,14 @@ export const CardList = () => {
           onCloseClick={handleCloseClick}
         />
       </CSSTransition>
+      {ingredientToDelete && (
+        <ConfirmModal
+          confirmText={`Delete ${ingredientToDelete.name}?`}
+          confirmButtonText={"delete"}
+          onConfirmClick={() => console.log("delete ingredient")}
+          onCancelClick={() => setIngredientToDelete(undefined)}
+        />
+      )}
     </Container>
   );
 };

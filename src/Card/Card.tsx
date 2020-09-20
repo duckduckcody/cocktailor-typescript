@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "../common/Button/Button";
 import { Ingredient } from "./CardList";
+import { COLOURS } from "../common/COLOURS";
 
 const Container = styled.div`
   display: flex;
   font-family: "Martel Sans", sans-serif;
-  color: #2b4b5a;
+  color: ${COLOURS.TextBlack};
   position: relative;
 `;
 
 const ImageContainer = styled.div`
-  background-color: #5ae8dc;
+  background-color: ${COLOURS.Blue};
   flex: 0 0 30%;
   height: 125px;
   display: flex;
@@ -60,30 +62,31 @@ const Name = styled.span`
   line-height: 27px;
 `;
 
-const ViewButton = styled.button`
-  color: white;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 18px;
-  height: 28px;
-  background-color: #5ae8dc;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  flex: 1 1 auto;
+const StyledButton = styled(Button)`
+  background-color: ${COLOURS.Blue};
 
   &:active {
-    background-color: #49bfb5;
+    background-color: ${COLOURS.DarkBlue};
   }
+`;
+
+const CloseCross = styled.span`
+  cursor: pointer;
 `;
 
 interface Props {
   ingredient: Ingredient;
   onContainerClick?: (ingredient: Ingredient) => void;
   className?: string;
+  onCloseClick?: VoidFunction;
 }
 
-export const Card = ({ ingredient, onContainerClick, className }: Props) => (
+export const Card = ({
+  ingredient,
+  onContainerClick,
+  onCloseClick,
+  className,
+}: Props) => (
   <Container className={className}>
     <ImageContainer onClick={() => onContainerClick?.(ingredient)}>
       <Image src={ingredient.image} />
@@ -92,14 +95,14 @@ export const Card = ({ ingredient, onContainerClick, className }: Props) => (
       <TextContainer>
         <HeaderContainer>
           <span>{ingredient.label}</span>
-          <span>X</span>
+          <CloseCross onClick={() => onCloseClick?.()}>X</CloseCross>
         </HeaderContainer>
         <Name>{ingredient.name}</Name>
       </TextContainer>
       <ButtonContainer>
-        <ViewButton onClick={() => onContainerClick?.(ingredient)}>
+        <StyledButton onClick={() => onContainerClick?.(ingredient)}>
           View ingredient
-        </ViewButton>
+        </StyledButton>
       </ButtonContainer>
     </InformationContainer>
   </Container>
