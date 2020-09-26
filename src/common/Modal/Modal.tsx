@@ -24,10 +24,21 @@ const Container = styled.div`
 interface Props {
   onCloseClick?: VoidFunction;
   children?: ReactNode;
+  className?: string;
+  showing: boolean;
 }
 
 export const Modal = (props: Props) => (
-  <Shade>
-    <Container>{props.children}</Container>
-  </Shade>
+  <CSSTransition in={props.showing} timeout={500} unmountOnExit>
+    <Shade>
+      <CSSTransition
+        in={props.showing}
+        timeout={500}
+        appear={true}
+        unmountOnExit
+      >
+        <Container className={props.className}>{props.children}</Container>
+      </CSSTransition>
+    </Shade>
+  </CSSTransition>
 );

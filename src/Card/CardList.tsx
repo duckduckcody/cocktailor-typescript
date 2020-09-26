@@ -45,7 +45,7 @@ export const CardList = () => {
   // maintain state for exit animation
   const [selectedIngredient, setSelectedIngredient] = useState<Ingredient>();
   const [showBigBoyCard, setShowBigBoyCard] = useState(false);
-  const [ingredientToDelete, setIngredientToDelete] = useState<Ingredient>();
+  const [ingredientToRemove, setIngredientToRemove] = useState<Ingredient>();
 
   const handleContainerClick = (ingredient: Ingredient) => {
     setSelectedIngredient(ingredient);
@@ -61,7 +61,7 @@ export const CardList = () => {
           key={ingredient.name}
           ingredient={ingredient}
           onContainerClick={handleContainerClick}
-          onCloseClick={() => setIngredientToDelete(ingredient)}
+          onCloseClick={() => setIngredientToRemove(ingredient)}
         />
       ))}
       <CSSTransition
@@ -75,14 +75,16 @@ export const CardList = () => {
           onCloseClick={handleCloseClick}
         />
       </CSSTransition>
-      {ingredientToDelete && (
-        <ConfirmModal
-          confirmText={`Delete ${ingredientToDelete.name}?`}
-          confirmButtonText={"delete"}
-          onConfirmClick={() => console.log("delete ingredient")}
-          onCancelClick={() => setIngredientToDelete(undefined)}
-        />
-      )}
+
+      <ConfirmModal
+        showing={!!ingredientToRemove}
+        confirmText={
+          ingredientToRemove?.name && `Remove ${ingredientToRemove.name}?`
+        }
+        confirmButtonText={"Remove"}
+        onConfirmClick={() => console.log("remove ingredient")}
+        onCancelClick={() => setIngredientToRemove(undefined)}
+      />
     </Container>
   );
 };

@@ -1,7 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOURS } from "../COLOURS";
+import { useDefinedValue } from "../useDefinedValue";
 import { Modal } from "./Modal";
+
+const StyledConfirmModal = styled(Modal)`
+  &.appear {
+    transform: translateY(100%);
+  }
+  &.appear-active {
+    transform: translateY(0%);
+    transition: transform 500ms;
+  }
+
+  &.exit {
+    transform: translateY(0%);
+  }
+  &.exit-active {
+    transform: translateY(100%);
+    transition: transform 500ms;
+  }
+`;
 
 const View = styled.div`
   display: flex;
@@ -29,6 +48,7 @@ const TextButton = styled.button`
   border: none;
   padding: 8px 0;
   cursor: pointer;
+  background-color: white;
 
   &:active {
     background-color: lightgrey;
@@ -48,24 +68,30 @@ const CancelButton = styled(TextButton)`
 `;
 
 interface Props {
-  confirmText: string;
+  confirmText?: string;
   confirmButtonText: string;
   onConfirmClick?: VoidFunction;
   onCancelClick?: VoidFunction;
+  className?: string;
+  showing: boolean;
 }
 
-export const ConfirmModal = (props: Props) => (
-  <Modal>
-    <View>
-      <Container>
-        <ConfirmText>{props.confirmText}</ConfirmText>
-        <DeleteButton onClick={props.onConfirmClick}>
-          {props.confirmButtonText}
-        </DeleteButton>
-      </Container>
-      <Container>
-        <CancelButton onClick={props.onCancelClick}>Cancel</CancelButton>
-      </Container>
-    </View>
-  </Modal>
-);
+export const ConfirmModal = (props: Props) => {
+  const definedConfirmText = useDefinedValue(props.confirmText);
+
+  return (
+    <StyledConfirmModal className={props.className} showing={props.showing}>
+      <View>
+        <Container>
+          <ConfirmText>{definedConfirmText}</ConfirmText>
+          <DeleteButton onClick={props.onConfirmClick}>
+            {props.confirmButtonText}
+          </DeleteButton>
+        </Container>
+        <Container>
+          <CancelButton onClick={props.onCancelClick}>Cancel</CancelButton>
+        </Container>
+      </View>
+    </StyledConfirmModal>
+  );
+};
