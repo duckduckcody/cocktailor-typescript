@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Card } from "./Card";
-import coke from "./coke.png";
-import { BigBoyCard } from "./BigBoyCard";
+import { IngredientCard } from "./IngredientCard/IngredientCard";
+import coke from "../assets/pictures/coke.png";
+import { BigBoyCard } from "./IngredientDetailsModal/IngredientDetailsModal";
 import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import { ConfirmModal } from "../common/Modal/ConfirmModal";
@@ -33,7 +33,7 @@ const Container = styled.div`
   padding: 8px;
 `;
 
-const StyledCard = styled(Card)`
+const StyledCard = styled(IngredientCard)`
   padding: 0 0 16px;
 
   &::last-child {
@@ -41,7 +41,7 @@ const StyledCard = styled(Card)`
   }
 `;
 
-export const CardList = () => {
+export const IngredientList = () => {
   // maintain state for exit animation
   const [selectedIngredient, setSelectedIngredient] = useState<Ingredient>();
   const [showBigBoyCard, setShowBigBoyCard] = useState(false);

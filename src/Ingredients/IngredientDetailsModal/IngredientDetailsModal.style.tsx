@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { DanMurphiesLink } from "../common/ThirdPartyLink/DanMurphiesLink";
-import { WikipediaLink } from "../common/ThirdPartyLink/WikipediaLink";
+import { DanMurphiesLink } from "../../common/ThirdPartyLink/DanMurphiesLink";
+import { WikipediaLink } from "../../common/ThirdPartyLink/WikipediaLink";
 
 export const Container = styled.div`
   flex-flow: column nowrap;

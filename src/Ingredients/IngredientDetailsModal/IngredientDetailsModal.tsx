@@ -9,8 +9,8 @@ import {
   Description,
   StyledWikipediaLink,
   StyledDanMurphiesLink,
-} from "./BigBoyCard.styles";
-import { Ingredient } from "./CardList";
+} from "./IngredientDetailsModal.style";
+import { Ingredient } from "../IngredientList";
 
 interface Props {
   ingredient?: Ingredient;

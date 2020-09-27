@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOURS } from "../COLOURS";
-import { useDefinedValue } from "../useDefinedValue";
+import { useDefinedValue } from "../hooks/useDefinedValue";
 import { Modal } from "./Modal";
 
 const StyledConfirmModal = styled(Modal)`
