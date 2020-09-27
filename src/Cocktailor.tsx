@@ -1,6 +1,13 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { Footer } from "./common/Footer/Footer";
 import { IngredientList } from "./Ingredients/IngredientList";
+
+const FOOTER_HEIGHT = "50px";
+
+const Container = styled.div`
+  margin: 0 0 ${FOOTER_HEIGHT};
+`;
 
 export const Cocktailor = () => {
   const INGREDIENT_TAB_ID = "ingredients";
@@ -9,8 +16,10 @@ export const Cocktailor = () => {
 
   return (
     <>
-      {selectedTabId === INGREDIENT_TAB_ID && <IngredientList />}
-      {selectedTabId === COCKTAILS_TAB_ID && <div>Cocktails</div>}
+      <Container>
+        {selectedTabId === INGREDIENT_TAB_ID && <IngredientList />}
+        {selectedTabId === COCKTAILS_TAB_ID && <div>Cocktails</div>}
+      </Container>
       <Footer
         ingredientTabId={INGREDIENT_TAB_ID}
         cocktailTabId={COCKTAILS_TAB_ID}

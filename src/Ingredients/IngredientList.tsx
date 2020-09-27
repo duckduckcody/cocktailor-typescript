@@ -71,7 +71,7 @@ const ingredients = [
 ];
 
 const Container = styled.div`
-  padding: 8px;
+  padding: 8px 8px 0;
 `;
 
 const StyledCard = styled(IngredientCard)`
