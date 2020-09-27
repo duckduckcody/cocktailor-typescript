@@ -35,7 +35,11 @@ const FooterButtonText = styled.span`
   font-size: 12px;
 `;
 
-export const Footer = () => (
+interface Props {
+  setSelectedTabId?: () => string;
+}
+
+export const Footer = (props: Props) => (
   <Container>
     <FooterButton>
       <StyledIcon icon={faLemon} />
