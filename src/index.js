@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { Cocktailor } from "./Cocktailor";
 
 const AppContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   color: #051e2a;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
