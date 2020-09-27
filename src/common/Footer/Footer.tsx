@@ -9,21 +9,23 @@ const Container = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  height: 42px;
-  border-top: 1px solid ${COLOURS.Grey};
+  height: 50px;
+  /* border-top: 1px solid ${COLOURS.Grey}; */
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
+  background-color: white;
 `;
 
-const FooterButton = styled.div`
+const FooterButton = styled.div<{ selected?: boolean }>`
   height: 40px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   cursor: pointer;
   flex: 1 1 auto;
+  color: ${(props) => (props.selected ? `${COLOURS.DarkBlue}` : "black")};
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
@@ -36,16 +38,25 @@ const FooterButtonText = styled.span`
 `;
 
 interface Props {
-  setSelectedTabId?: () => string;
+  ingredientTabId: string;
+  cocktailTabId: string;
+  onTabClick?: (tabId: string) => void;
+  selectedTabId: string;
 }
 
 export const Footer = (props: Props) => (
   <Container>
-    <FooterButton>
+    <FooterButton
+      onClick={() => props.onTabClick?.(props.ingredientTabId)}
+      selected={props.selectedTabId === props.ingredientTabId}
+    >
       <StyledIcon icon={faLemon} />
       <FooterButtonText>Ingredients</FooterButtonText>
     </FooterButton>
-    <FooterButton>
+    <FooterButton
+      onClick={() => props.onTabClick?.(props.cocktailTabId)}
+      selected={props.selectedTabId === props.cocktailTabId}
+    >
       <StyledIcon icon={faCocktail} />
       <FooterButtonText>Cocktails</FooterButtonText>
     </FooterButton>

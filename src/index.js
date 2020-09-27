@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import { IngredientList } from "./Ingredients/IngredientList";
-import { Footer } from "./common/Footer/Footer";
+import { Cocktailor } from "./Cocktailor";
 
 const AppContainer = styled.div`
   height: 100vh;
@@ -20,17 +19,16 @@ const AppContainer = styled.div`
   *,
   *:before,
   *:after {
-    -webkit-box-sizing: inherit;
-    -moz-box-sizing: inherit;
-    box-sizing: inherit;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
 `;
 
 ReactDOM.render(
   <React.StrictMode>
     <AppContainer>
-      <Footer />
-      <IngredientList />
+      <Cocktailor />
     </AppContainer>
   </React.StrictMode>,
   document.getElementById("root")
