@@ -4,6 +4,7 @@ import { BigBoyCard } from "./IngredientDetailsModal/IngredientDetailsModal";
 import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import { ConfirmModal } from "../common/Modal/ConfirmModal";
+import Coke from "../assets/pictures/coke.png";
 
 export interface Ingredient {
   name: string;
@@ -18,55 +19,55 @@ const ingredients = [
     description:
       "The most well known soda and arguably mixer packs acidity and caffeine",
     label: "Mixer",
-    image: "hi",
+    image: Coke,
   },
   {
     name: "Coke v2",
     description: "something very cool",
     label: "Mixer",
-    image: "hi",
+    image: Coke,
   },
   {
     name: "Coke v2",
     description: "something very cool",
     label: "Mixer",
-    image: "hi",
+    image: Coke,
   },
   {
     name: "Coke v2",
     description: "something very cool",
     label: "Mixer",
-    image: "hi",
+    image: Coke,
   },
   {
     name: "Coke v2",
     description: "something very cool",
     label: "Mixer",
-    image: "hi",
+    image: Coke,
   },
   {
     name: "Coke v2",
     description: "something very cool",
     label: "Mixer",
-    image: "hi",
+    image: Coke,
   },
   {
     name: "Coke v2",
     description: "something very cool",
     label: "Mixer",
-    image: "hi",
+    image: Coke,
   },
   {
     name: "Coke v2",
     description: "something very cool",
     label: "Mixer",
-    image: "hi",
+    image: Coke,
   },
   {
     name: "Coke v2",
     description: "something very cool",
     label: "Mixer",
-    image: "hi",
+    image: Coke,
   },
 ];
 
